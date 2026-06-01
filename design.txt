@@ -1,0 +1,32 @@
+The following algorithm is used to produce a C++ program: 
+
+1. Read 24 solar values and 5 device loads from file
+2. Start battery at 50% charge
+3. For each hour (0 to 23):
+     For each 15-minute part (0 to 3):
+       a. Calculate power from sun and power used.
+       b.  If sun > use and battery not full then charge.
+       c.   Else if sun < use and battery has power then discharge.
+       d.  Else if no sun and no battery then blackout.
+       e.  Else, do nothing.
+       f.  Save what happened and new battery %age.
+4. At end, show how many hours had power.
+
+Data Structures I Will Use:
+
+1. Fixed size array of 24 values.
+2. Storing data of 24 hours for n devices in a 2D array. (My example has 5 devices)
+3. Using structs for battery state tracking. 
+4. Tracking actions using "enum".
+5. log saving using struct into files.
+
+Project Decision-makers:
+
+IF (solar_in_quarter > load_in_quarter) AND battery < 100%
+    Charge battery
+ELSE IF (solar_in_quarter < load_in_quarter) AND battery > 10%
+    Discharge battery
+ELSE IF (solar_in_quarter < load_in_quarter) AND battery <= 10%
+    Blackout
+ELSE
+    Idle 
